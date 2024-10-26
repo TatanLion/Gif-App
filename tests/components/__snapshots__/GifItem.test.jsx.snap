@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <GifItem /> Hacer match con Snapshot 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <img
+      alt="OverWatch"
+      src="https://overwatch.com/moira.jpg"
+    />
+    <p>
+      OverWatch
+    </p>
+  </div>
+</div>
+`;
