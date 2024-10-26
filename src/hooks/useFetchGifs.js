@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getGifs } from "../helpers/getGifs"
 
 
-export const useFetchGifs = (category, limitResults) => {
+export const useFetchGifs = (category, limitResults, setLimitResults) => {
     
     // Guardar las imagenes en un estado
     const [ images, setImages ] = useState([])
@@ -11,7 +11,7 @@ export const useFetchGifs = (category, limitResults) => {
 
     // Funcion para obtener las imagenes de la API y guardarlas en el state
     const getImages = async () => {
-        const newImages = await getGifs(category, limitResults)
+        const newImages = await getGifs(category, limitResults, setLimitResults)
         setImages(newImages)
         setIsLoading(true)
     }

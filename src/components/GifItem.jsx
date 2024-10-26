@@ -2,7 +2,7 @@ import React from 'react'
 
 export const GifItem = ({ title, url }) => {
 
-    console.log(title, url);
+    // console.log(title, url);
 
   return (
     <div className='card'>

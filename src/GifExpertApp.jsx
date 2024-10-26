@@ -1,13 +1,11 @@
 import { useState } from "react"
-import { AddCategory, GifGrid } from "./components/"
+import { AddCategory, GifGrid, ListCategories } from "./components/"
 
 export const GifExpertApp = () => {
 
-  const [ categories, setCategories ] = useState(
-    ['Overwatch']
-  )
+  const [ categories, setCategories ] = useState([])
 
-  const [ limitResults, setLimitResults ] = useState(10)
+  const [ limitResults, setLimitResults ] = useState('')
 
   const onAddCategory = (newCategory) => {
     if(categories.map(c => c.toLowerCase()).includes(newCategory.toLowerCase())) return;
@@ -17,11 +15,18 @@ export const GifExpertApp = () => {
   return (
     <div>
 
-      <h1>GifExpertApp</h1>
+      <h1>Gif-App</h1>
 
       <AddCategory 
         // setCategories={setCategories}
         onNewCategory={ onAddCategory }
+        limitResults={limitResults}
+        setLimitResults={setLimitResults}
+      />
+
+      <ListCategories 
+        categories={categories} 
+        setCategories={setCategories}
       />
 
       {categories.map(category => (
@@ -29,6 +34,7 @@ export const GifExpertApp = () => {
           key={category}
           category={category} 
           limitResults={limitResults}
+          setLimitResults={setLimitResults}
         />
       ))}
 
