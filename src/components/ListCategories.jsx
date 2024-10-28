@@ -2,27 +2,24 @@ import React from "react";
 
 export const ListCategories = ({ categories, setCategories }) => {
 
-  // Ordenar los elementos
     const handleOrderBy = (category) => {
 
-        const index = categories.findIndex(categoryArr => categoryArr === category)
+        const index = categories.findIndex(categoryArr => categoryArr.valueSearch === category.valueSearch)
 
         if(index !== -1){
-            // Hacemos una copia del arreglo original
             const newCategories = [...categories]
-            // Obtenemos la category que vamos a eliminar y la almacenamos temporalmente
-            const [selectedCategory] = newCategories.splice(index, 1)
+            // Guardar el elemento de forma temporal sabiendo que hubo un array
+            const [ selectedCategory ] = newCategories.splice(index, 1)
             newCategories.unshift(selectedCategory)
             setCategories(newCategories);
         }
     }
 
-  //Eliminar el elemento buscado
   const handleDeleteCategory = (category, event) => {
     event.stopPropagation()
     if (categories.includes(category)) {
       const categorieDelete = categories.filter(
-        (categoryArr) => categoryArr !== category
+        categoryArr => categoryArr.valueSearch !== category.valueSearch
       );
       setCategories(categorieDelete);
     }
@@ -36,7 +33,7 @@ export const ListCategories = ({ categories, setCategories }) => {
           className="category-button"
           onClick={() => handleOrderBy(category)}
         >
-          {category}
+          {category.valueSearch}({category.numberSearch === 0 ? '50': category.numberSearch})
           <span
             className="remove-button"
             onClick={(event) => handleDeleteCategory(category, event)}

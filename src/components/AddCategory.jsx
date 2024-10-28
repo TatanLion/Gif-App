@@ -1,41 +1,57 @@
 import { useState } from "react";
 
-export const AddCategory = ({ onNewCategory, limitResults, setLimitResults }) => {
+export const AddCategory = ({ onNewCategory }) => {
   
-  const [inputValue, setInputValue] = useState("");
+  const [inputValues, setInputValues] = useState({
+    name: "",
+    numberResult: "",
+  });
 
   const onCategoryChange = ({ target }) => {
-    setInputValue(target.value);
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      name: target.value.trim(),
+    }));
   };
 
   const onLimitResultsChange = ({ target }) => {
-    const value = Number(target.value);
-    if (!isNaN(value) && value > 0) {
-      setLimitResults(value);
+    const value = target.value;
+    if (value === "" || Number(value) > 0) {
+      setInputValues((prevValues) => ({
+        ...prevValues,
+        numberResult: value,
+      }));
     }
-  }
+  };
 
   const onSubmit = (event) => {
-    event.preventDefault()
-    // Validación caracteres del input
-    if(inputValue.trim().length <= 1) return;
-    onNewCategory(inputValue.trim());
-    setInputValue('')
-  }
+    event.preventDefault();
+    if (inputValues.name.trim().length <= 1) return;
+
+    onNewCategory({
+      valueSearch: inputValues.name,
+      numberSearch: Number(inputValues.numberResult),
+    });
+
+    setInputValues({
+      name: "",
+      numberResult: "",
+    });
+  };
 
   return (
-    <form onSubmit={ onSubmit } className="form">
+    <form onSubmit={onSubmit} className="form">
       <input
         type="text"
         placeholder="Busca tus GIF"
-        value={ inputValue }
-        onChange={ onCategoryChange }
+        value={inputValues.name}
+        onChange={onCategoryChange}
       />
       <input
-        type="text"
+        type="number"
         placeholder="Número de resultados (Max: 50)"
-        value={ limitResults }
-        onChange={ onLimitResultsChange }
+        value={inputValues.numberResult}
+        onChange={onLimitResultsChange}
       />
       <input type="submit" style={{ display: 'none' }} />
     </form>

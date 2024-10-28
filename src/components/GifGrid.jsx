@@ -3,19 +3,19 @@ import { GifItem } from './GifItem'
 // HOOKS
 import { useFetchGifs } from '../hooks/useFetchGifs'
 
-export const GifGrid = ({ category, limitResults, setLimitResults }) => {
+export const GifGrid = ({ category }) => {
 
     // HOOK
-    const { images, isLoading } = useFetchGifs(category, limitResults, setLimitResults)
+    const { images, isLoading } = useFetchGifs(category)
 
   return (
     <>
         {isLoading && (
             <>
-                <h3>{ category }</h3>
+                <h3>{ category.valueSearch }</h3>
                 <div className='card-grid'>
-                    {images.map( image => (
-                        <GifItem key={image.id} {...image} /> // Es la forma en la que pasamos
+                    {images.map( (image, index) => (
+                        <GifItem key={index} {...image} />
                     ))}
                 </div>
             </>
