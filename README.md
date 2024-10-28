@@ -6,7 +6,7 @@ It's an app to search for GIFs on any theme, connected to an API. You can save, 
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-Mira **[Deployment]()** para conocer como desplegar el proyecto.
+Mira **[Deployment](https://gif-app-tatanlion.netlify.app/)** para conocer como desplegar el proyecto.
 
 
 ### Pre-requisitos 📋
